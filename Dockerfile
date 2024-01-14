@@ -11,4 +11,4 @@ COPY . /app
 RUN pip install --no-cache-dir flask
 
 # 声明启动时执行的命令
-CMD ["python", "main.py"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000", "--without-threads"]
