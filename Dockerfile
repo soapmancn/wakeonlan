@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir flask
 # 设置环境变量，指定 Flask 应用入口文件
 ENV FLASK_APP=app.py
 
-EXPOSE 5000
+EXPOSE 5500
 
 # 声明启动时执行的命令
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000", "--without-threads"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5500", "--without-threads"]
