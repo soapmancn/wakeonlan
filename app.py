@@ -1,9 +1,24 @@
 from flask import Flask, request, jsonify
 import socket
 import binascii
+import logging
+from datetime import datetime
 
 app = Flask(__name__)
 
+# 设置日志记录器
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+
+
+@app.before_request
+def log_request_info():
+    # 获取请求的IP地址
+    client_ip = request.remote_addr
+    # 获取当前时间
+    request_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # 记录日志
+    logging.info(f"Request received from {client_ip} at {request_time}")
+    
 
 def send_wol_magic_packet(mac_address, broadcast_ip="255.255.255.255", port=9):
     mac_bytes = binascii.unhexlify(mac_address.replace(":", "").replace("-", ""))
